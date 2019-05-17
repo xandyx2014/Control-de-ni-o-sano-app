@@ -1,0 +1,26 @@
+<ion-content padding appAnimatecss>
+<ion-card mode="ios">
+  <ion-card-header>
+    <ion-card-subtitle>Ingrese medidas </ion-card-subtitle>
+    <ion-card-title>Control de Crecimiento</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+      <form [formGroup]="myForm">
+          <ion-item>
+              <ion-label mode="ios" position="floating">Fecha Actual</ion-label>
+              <ion-input formControlName="fecha" mode="ios"></ion-input>
+            </ion-item>
+          <ion-item>
+              <ion-label mode="ios" position="floating">Peso</ion-label>
+              <ion-input  numeric numericType="decimal" formControlName="peso" mode="ios"></ion-input>
+            </ion-item>
+          <ion-item>
+              <ion-label mode="ios" position="floating">Estatura</ion-label>
+              <ion-input  numeric numericType="decimal" formControlName="estatura" mode="ios"></ion-input>
+            </ion-item>        
+          <ion-button mode="ios" expand="block" (click)="obtenerUsuario()"
+            [disabled]="myForm.invalid">Calcular</ion-button>
+      </form>
+  </ion-card-content>
+</ion-card>
+</ion-content>

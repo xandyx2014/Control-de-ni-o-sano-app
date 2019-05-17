@@ -1,0 +1,51 @@
+<ion-content>
+    <ion-slides  pager="true" class="slide-full" #slidesView>
+      <ion-slide *ngFor="let slide of slides">
+        <ion-card mode="ios">
+          <img [src]="slide.img" alt="" class="slide-image">
+          <ion-card-header>
+            <ion-card-title>{{ slide.titulo}}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            {{ slide.desc}}
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+      <ion-slide>
+          <ion-card mode="ios" padding>
+            <form [formGroup]="myForm">
+              <ion-item>
+                  <ion-label position="floating">Nombre del Niño</ion-label>
+                  <ion-input formControlName="nombre" mode="ios"></ion-input>
+                </ion-item>
+                <ion-list>
+                    <ion-radio-group formControlName="sexo" >
+                      <ion-item>
+                        <ion-label>Mujer</ion-label>
+                        <ion-radio   slot="start" value="mujer" checked></ion-radio>
+                      </ion-item>
+                  
+                      <ion-item>
+                        <ion-label>Hombre</ion-label>
+                        <ion-radio  slot="start" value="hombre"></ion-radio>
+                      </ion-item>
+                  
+                    </ion-radio-group>
+                </ion-list>
+                <ion-item>
+                    <ion-label>Fecha Nacimiento</ion-label>
+                    <ion-datetime 
+                    formControlName="fechaNacimiento"
+                    month-names="Enero,Febrero,Marzo,Abril,Mayo,Junio,Julio,Agosto,Septiembre,Octubre,Noviembre,Diciembre"
+                    display-format="DD/MM/YYYY"
+                    [min]="descontarFecha()"
+                    picker-format="DD MMMM YYYY"></ion-datetime>
+                  </ion-item>
+              </form>
+          </ion-card>
+        </ion-slide>
+      <ion-slide>
+        <ion-button expand="full" color="primary" fill="outline" (click)="onClick()">Comenzar</ion-button>
+      </ion-slide>
+    </ion-slides>
+</ion-content>

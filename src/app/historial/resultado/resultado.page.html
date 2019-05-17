@@ -1,0 +1,333 @@
+<ion-content padding appAnimatecss>
+  <ng-container *ngIf="resultadoShow">
+
+    <ion-card mode="ios">
+      <ion-card-header>
+        <ion-card-subtitle>Medidas</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label mode="ios">Fecha</ion-label>
+          <ion-badge mode="ios" slot="end">{{resultadoShow.fecha}}</ion-badge>
+        </ion-item>
+        <ion-item>
+          <ion-label mode="ios">Peso</ion-label>
+          <ion-badge mode="ios" slot="end">{{resultadoShow.peso}}</ion-badge>
+        </ion-item>
+        <ion-item>
+          <ion-label mode="ios">Estatura</ion-label>
+          <ion-badge mode="ios" slot="end">{{resultadoShow.estatura}}</ion-badge>
+        </ion-item>
+        <ion-item>
+          <ion-label mode="ios">Edad en Meses</ion-label>
+          <ion-badge mode="ios" slot="end">{{resultadoShow.mesesNacido}}</ion-badge>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <ng-container *ngIf="resultadoShow.tamagnoEdad !== undefined">
+      <ion-card mode="ios">
+        <ion-card-content>
+          <ion-item-group>
+            <ion-item-divider>
+              <ng-container *ngIf="resultadoShow.tipo === 'menor'; else elseTemplate">
+                <ion-label>Longitud para la edad</ion-label>
+              </ng-container>
+              <ng-template #elseTemplate>
+                <ion-label>Talla para la edad : </ion-label>
+              </ng-template>
+              <ion-text
+              *ngIf="between(resultadoShow.estatura,resultadoShow.tamagnoEdad[-2],resultadoShow.tamagnoEdad[-1])" 
+              name="heart-half">
+              leve
+              </ion-text>
+              <ion-text
+              color="warning"
+              *ngIf="between(resultadoShow.estatura,resultadoShow.tamagnoEdad[-3],resultadoShow.tamagnoEdad[-2])" 
+              name="heart-half">
+              Moderada
+              </ion-text>
+              <ion-text
+              color="danger"
+              *ngIf="between(resultadoShow.estatura, 0,resultadoShow.tamagnoEdad[-3])" 
+              name="heart-half">
+              Grave
+              </ion-text>
+              <ion-text
+              color="success"
+              *ngIf="between(resultadoShow.estatura, resultadoShow.tamagnoEdad[-1],resultadoShow.tamagnoEdad[1])" 
+              name="heart-half">
+              Mediana
+              </ion-text>
+              <ion-text
+              color="warning"
+              *ngIf="between(resultadoShow.estatura,resultadoShow.tamagnoEdad[1],resultadoShow.tamagnoEdad[2])" 
+              name="heart-half">
+              Alta
+              </ion-text>
+              <ion-text
+              color="danger"
+              *ngIf="between(resultadoShow.estatura,resultadoShow.tamagnoEdad[2],resultadoShow.tamagnoEdad[3])" 
+              name="heart-half">
+              Muy Alta
+              </ion-text>
+              <ion-text
+              color="danger" 
+              *ngIf="between(resultadoShow.estatura,resultadoShow.tamagnoEdad[3], 1000)" 
+              name="heart-half">
+              Muy Alta
+              </ion-text>
+            
+            </ion-item-divider>
+            <ion-item>
+              <ion-label>
+                <ion-text color="primary" mode="ios">Año:Mes </ion-text>{{resultadoShow.tamagnoEdad['Año:Mes']}}
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <ion-text color="primary" mode="ios">Estatura </ion-text>{{resultadoShow.estatura}}
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <ion-text color="primary" mode="ios">Meses </ion-text>{{resultadoShow.tamagnoEdad['Meses']}}
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <ion-text color="primary" mode="ios">Mediana </ion-text>{{resultadoShow.tamagnoEdad['Mediana']}}
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <ion-text color="primary" mode="ios">1: </ion-text>{{resultadoShow.tamagnoEdad['1']}}
+              </ion-label>
+              <ion-label slot="end">
+                <ion-text color="primary" mode="ios">-1:</ion-text> {{resultadoShow.tamagnoEdad['-1']}}
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <ion-text color="primary" mode="ios">2:</ion-text> {{resultadoShow.tamagnoEdad['2']}}
+              </ion-label>
+              <ion-label slot="end">
+                <ion-text color="primary" mode="ios">-2:</ion-text> {{resultadoShow.tamagnoEdad['-2']}}
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <ion-text color="primary" mode="ios">3: </ion-text>{{resultadoShow.tamagnoEdad['3']}}
+              </ion-label>
+              <ion-label slot="end">
+                <ion-text color="primary" mode="ios">-3:</ion-text> {{resultadoShow.tamagnoEdad['-3']}}
+              </ion-label>
+            </ion-item>
+          </ion-item-group>
+        </ion-card-content>
+      </ion-card>
+    </ng-container>
+
+    <ng-container *ngIf="resultadoShow.pesoEdad !== undefined">
+      <ion-card mode="ios">
+        <ion-card-content>
+          <ion-item-group>
+            <ion-item-divider>
+              <ng-container *ngIf="resultadoShow.tipo === 'menor'; else elseTemplate">
+                <ion-label>Peso para la Edad : </ion-label>
+              </ng-container>
+              <ng-template #elseTemplate>
+                <ion-label>Peso para la Edad : </ion-label>
+              </ng-template>
+              <ion-text
+              *ngIf="between(resultadoShow.peso,resultadoShow.pesoEdad[-2],resultadoShow.pesoEdad[-1])" 
+              name="heart-half">
+              leve
+              </ion-text>
+              <ion-text
+              color="warning"
+              *ngIf="between(resultadoShow.peso,resultadoShow.pesoEdad[-3],resultadoShow.pesoEdad[-2])" 
+              name="heart-half">
+              Moderada
+              </ion-text>
+              <ion-text
+              color="danger"
+              *ngIf="between(resultadoShow.peso, 0,resultadoShow.pesoEdad[-3])" 
+              name="heart-half">
+              Grave
+              </ion-text>
+              <ion-text
+              color="success"
+              *ngIf="between(resultadoShow.peso, resultadoShow.pesoEdad[-1],resultadoShow.pesoEdad[1])" 
+              name="heart-half">
+              Mediana
+              </ion-text>
+              <ion-text
+              color="warning"
+              *ngIf="between(resultadoShow.peso,resultadoShow.pesoEdad[1],resultadoShow.pesoEdad[2])" 
+              name="heart-half">
+              Alta
+              </ion-text>
+              <ion-text
+              color="danger"
+              *ngIf="between(resultadoShow.peso,resultadoShow.pesoEdad[2],resultadoShow.pesoEdad[3])" 
+              name="heart-half">
+              Muy Alta
+              </ion-text>
+              <ion-text
+              color="danger"
+              *ngIf="between(resultadoShow.peso,resultadoShow.pesoEdad[3],1000)" 
+              name="heart-half">
+              Muy Alta
+              </ion-text>
+            
+            </ion-item-divider>
+            <ion-item>
+              <ion-label>
+                <ion-text color="primary" mode="ios">Año:Mes </ion-text>{{resultadoShow.pesoEdad['Año:Mes']}}
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <ion-text color="primary" mode="ios">Meses </ion-text>{{resultadoShow.pesoEdad['Meses']}}
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <ion-text color="primary" mode="ios">Peso </ion-text>{{resultadoShow.peso}}
+              </ion-label>
+            </ion-item>
+            
+            <ion-item>
+              <ion-label>
+                <ion-text color="primary" mode="ios">Mediana </ion-text>{{resultadoShow.pesoEdad['Mediana']}}
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <ion-text color="primary" mode="ios">1: </ion-text>{{resultadoShow.pesoEdad['1']}}
+              </ion-label>
+              <ion-label slot="end">
+                <ion-text color="primary" mode="ios">-1:</ion-text> {{resultadoShow.pesoEdad['-1']}}
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <ion-text color="primary" mode="ios">2:</ion-text> {{resultadoShow.pesoEdad['2']}}
+              </ion-label>
+              <ion-label slot="end">
+                <ion-text color="primary" mode="ios">-2:</ion-text> {{resultadoShow.pesoEdad['-2']}}
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <ion-text color="primary" mode="ios">3: </ion-text>{{resultadoShow.pesoEdad['3']}}
+              </ion-label>
+              <ion-label slot="end">
+                <ion-text color="primary" mode="ios">-3:</ion-text> {{resultadoShow.pesoEdad['-3']}}
+              </ion-label>
+            </ion-item>
+          </ion-item-group>
+        </ion-card-content>
+      </ion-card>
+    </ng-container>
+    <ng-container *ngIf="resultadoShow.pesoTamagno !== undefined">
+      <ion-card mode="ios">
+        <ion-card-content>
+          <ion-item-group>
+            <ion-item-divider>
+              <ng-container *ngIf="resultadoShow.tipo === 'menor'; else elseTemplate">
+                <ion-label>Peso para la longitud : </ion-label>
+              </ng-container>
+              <ng-template #elseTemplate>
+                <ion-label>Peso para la Talla : </ion-label>
+              </ng-template>
+              <ion-text
+              *ngIf="between(resultadoShow.peso,resultadoShow.pesoTamagno[-2],resultadoShow.pesoTamagno[-1])" 
+              name="heart-half">
+              leve
+              </ion-text>
+              <ion-text
+              color="warning"
+              *ngIf="between(resultadoShow.peso,resultadoShow.pesoTamagno[-3],resultadoShow.pesoTamagno[-2])" 
+              name="heart-half">
+              Moderada
+              </ion-text>
+              <ion-text
+              color="danger"
+              *ngIf="between(resultadoShow.peso, 0,resultadoShow.pesoTamagno[-3])" 
+              name="heart-half">
+              Grave
+              </ion-text>
+              <ion-text
+              color="danger"
+              *ngIf="between(resultadoShow.peso, resultadoShow.pesoTamagno[-1],resultadoShow.pesoTamagno[1])" 
+              name="heart-half">
+              Mediana
+              </ion-text>
+              <ion-text
+              color="warning"
+              *ngIf="between(resultadoShow.peso,resultadoShow.pesoTamagno[1],resultadoShow.pesoTamagno[2])" 
+              name="heart-half">
+              Alta
+              </ion-text>
+              <ion-text
+              color="danger"
+              *ngIf="between(resultadoShow.peso,resultadoShow.pesoTamagno[2],resultadoShow.pesoTamagno[3])" 
+              name="heart-half">
+              Muy Alta
+              </ion-text>
+              <ion-text
+              color="danger"
+              *ngIf="between(resultadoShow.peso,resultadoShow.pesoTamagno[3],1000)" 
+              name="heart-half">
+              Muy Alta
+              </ion-text>
+            
+            </ion-item-divider>
+            <ion-item>
+              <ion-label>
+                <ion-text color="primary" mode="ios">Mediana </ion-text>{{resultadoShow.pesoTamagno['Mediana']}}
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <ion-text color="primary" mode="ios">Peso </ion-text>{{resultadoShow.peso}}
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <ion-text color="primary" mode="ios">Estatura </ion-text>{{resultadoShow.estatura}}
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <ion-text color="primary" mode="ios">1: </ion-text>{{resultadoShow.pesoTamagno['1']}}
+              </ion-label>
+              <ion-label slot="end">
+                <ion-text color="primary" mode="ios">-1:</ion-text> {{resultadoShow.pesoTamagno['-1']}}
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <ion-text color="primary" mode="ios">2:</ion-text> {{resultadoShow.pesoTamagno['2']}}
+              </ion-label>
+              <ion-label slot="end">
+                <ion-text color="primary" mode="ios">-2:</ion-text> {{resultadoShow.pesoTamagno['-2']}}
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <ion-text color="primary" mode="ios">3: </ion-text>{{resultadoShow.pesoTamagno['3']}}
+              </ion-label>
+              <ion-label slot="end">
+                <ion-text color="primary" mode="ios">-3:</ion-text> {{resultadoShow.pesoTamagno['-3']}}
+              </ion-label>
+            </ion-item>
+          </ion-item-group>
+        </ion-card-content>
+      </ion-card>
+    </ng-container>
+
+  </ng-container>
+</ion-content>

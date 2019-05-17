@@ -1,0 +1,32 @@
+
+<ion-content>
+  <ng-container *ngIf="okey">
+      <div class="flex" appAnimatecss>
+          <div class="flex-item">
+            <div style="display: block;">
+            <canvas baseChart width="400" height="400"
+                        [datasets]="lineChartDataEstatura"
+                        [labels]="lineChartLabelsDate"
+                        [legend]="lineChartLegend"
+                        [chartType]="lineChartType">
+            </canvas>
+            </div>
+          </div>
+        </div>
+      <div class="flex" appAnimatecss>
+          <div class="flex-item">
+            <div style="display: block;"> 
+            <canvas baseChart width="400" height="400"
+                        [datasets]="lineChartDataPeso"
+                        [colors]="lineChartColors"
+                        [labels]="lineChartLabelsDate"
+                        [legend]="lineChartLegend"
+                        [chartType]="lineChartType">
+            </canvas>
+            </div>
+          </div>
+        </div>
+  </ng-container>
+  
+  
+</ion-content>

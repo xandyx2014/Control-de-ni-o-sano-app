@@ -1,3 +1,22 @@
 <ion-app>
   <ion-router-outlet></ion-router-outlet>
+  <ion-fab vertical="top" horizontal="end" slot="fixed" mode="ios">
+    <ion-fab-button>
+      <ion-fab-button>
+        <ion-icon mode="ios" name="add-circle-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-button>
+    <ion-fab-list side="bottom">
+      <ion-fab-button  (click)="home('/')">
+        <ion-icon mode="ios" name="home"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button (click)="home('/tabs/historial')">
+        <ion-icon mode="ios" name="clipboard" ></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button (click)="home('/tabs/grafica')">
+        <ion-icon mode="ios" name="stats"></ion-icon>
+      </ion-fab-button>
+      
+    </ion-fab-list>
+  </ion-fab> 
 </ion-app>
